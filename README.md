@@ -13,7 +13,7 @@ ProtPhenoAge predicts phenotypic age (PhenoAge) from Olink plasma protein measur
 
 The UKB model under `model/` can be loaded for prediction directly, with no training data required.
 
-## Pipeline
+## Processing of Olink Protein Matrix before input
 
 1. **Long-to-wide**: spread Olink `result` by `protein_id`
 2. **Deduplication and repeated measurements**: deduplicate by `eid`; for participants with repeated measurements, take the first non-missing value per protein
