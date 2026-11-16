@@ -56,7 +56,7 @@ python script/ProtPhenoAge4UKB.py \
 - `--input` is required; `--model` defaults to `model/ProtPhenoAge_UKB.json`; `--output` defaults to `<input_stem>_protphenoage.csv` (next to the input)
 - The first output column is the input ID column when present, otherwise `row` (1-based row number)
 - `--keep-all`: output the full input matrix with an appended `protphenoage` column
-- The model contains 185 protein features aligned by column name; missing model proteins are treated as missing values, with a warning
+- The model uses 185 protein features aligned by column name; **a full 2,920-protein matrix is recommended**, and a matrix containing only these 185 proteins also runs; extra columns are ignored, and missing model proteins are treated as missing values with a warning
 
 You can also load the model file directly in Python:
 
@@ -83,7 +83,7 @@ All input files are **CSV**: comma-separated (`,`), UTF-8 encoded, with the colu
 
 - **Rows**: one sample (participant) per row; row order defines sample order
 - **Row names (first column)**: a row-index column, header usually empty (`""`, read by pandas as `Unnamed: 0`). It may also be a sample ID column (e.g., `eid`, `f.eid`, `sample_id`), which is detected automatically and excluded from features. The column is optional (e.g., `data/test_prot_1000.csv`)
-- **Columns**: one protein per remaining column, named by Olink protein symbol (e.g., `A1BG`, `GDF15`, `IL6`). Proteins are aligned by **column name**, so column order does not matter; extra columns are ignored and missing proteins are treated as missing values
+- **Columns**: one protein per remaining column, named by Olink protein symbol (e.g., `A1BG`, `GDF15`, `IL6`). Proteins are aligned by **column name**, so column order does not matter. **A full 2,920-protein matrix is recommended**; a matrix containing only the 185 model proteins also runs. Extra columns are ignored, and missing model proteins are treated as missing values with a warning
 - **Cells**: protein abundance values (Olink NPX), which must be on the same scale as the training data, i.e., after QC, missing-value imputation and RINT; missing values may be left blank or written as `NA`
 - **Delimiter**: comma (`,`)
 
