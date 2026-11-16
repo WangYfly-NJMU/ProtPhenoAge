@@ -1,6 +1,6 @@
 # ProtPhenoAge
 
-**中文** | [English](README_EN.md)
+**中文** | [English](README.md)
 
 > 基于血浆蛋白组学的蛋白表型年龄（ProtPhenoAge）计算管道
 > vbeta.20261116（2026-11-16）
@@ -30,10 +30,7 @@ ProtPhenoAge 使用 Olink 血浆蛋白数据预测表型年龄（PhenoAge），�
 | 路径 | 说明 |
 |---|---|
 | `ProtPhenoAge4github.qmd` | 管道规范文档（Quarto） |
-| `0.0 qc.r` | UKB 预处理参考实现（R，原服务器脚本） |
-| `1.0 train_model.py` | UKB 复现训练：内部验证 early stopping → 完整数据重训 → 保存模型/元数据/测试预测 |
 | `script/ProtPhenoAge4UKB.py` | 推理脚本：加载 UKB 模型，对任意蛋白矩阵预测 |
-| `script/ProtPhenoAgeTrain.py` | 独立队列训练：特征筛选 → 调参 → 训练 → 保存模型 |
 | `model/` | 训练好的 UKB 模型文件（`ProtPhenoAge_UKB.json`）及元数据 |
 | `data/` | 训练/测试数据（UKB 原始数据受使用协议限制，不随仓库分发） |
 
@@ -140,7 +137,7 @@ row,protphenoage
 ```bibtex
 @article{wang2026protophenoage,
   title   = {ProtPhenoAge: Integrating plasma proteomics to predict Aging-Related disease Risks},
-  author  = {Wang, Yifan and Sun, Yue and Yang, Fan and others},
+  author  = {Wang, Yifan and Sun, Yue and Yang, Fan and Li, Musu and Qi, Tianchen and Lu, Zixuan and Wang, Qian and Bu, Qingyin and Sun, Longhu and Wo, Hongmei and Zhao, Yang and Yi, Honggang and Dai, Juncheng},
   journal = {Journal of Advanced Research},
   year    = {2026},
   doi     = {10.1016/j.jare.2026.05.022}
@@ -152,6 +149,10 @@ row,protphenoage
 - PhenoAge 计算参考：[BioAge](https://github.com/dayoonkwon/BioAge/)
 - 特征筛选：[BorutaShap](https://github.com/Ekeany/Boruta-Shap)
 - 调参与模型：Optuna、XGBoost
+
+## 许可协议
+
+本项工作（论文与本仓库内容）采用 [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) 许可协议（© 2026 The Authors）。分享转载需注明出处；不得用于商业用途，不得修改后分发。如需商业使用或其他授权，请联系作者。
 
 ## 联系方式
 

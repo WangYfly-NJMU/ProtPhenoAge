@@ -30,10 +30,7 @@ The UKB model under `model/` can be loaded for prediction directly, with no trai
 | Path | Description |
 |---|---|
 | `ProtPhenoAge4github.qmd` | Pipeline specification (Quarto) |
-| `0.0 qc.r` | Reference UKB preprocessing implementation (R; paths are historical) |
-| `1.0 train_model.py` | UKB reproduction training: internal-validation early stopping → refit on full data → save model/metadata/test predictions |
 | `script/ProtPhenoAge4UKB.py` | Inference: load the UKB model and predict on any protein matrix |
-| `script/ProtPhenoAgeTrain.py` | Independent-cohort training: feature selection → tuning → training → model saving |
 | `model/` | Trained UKB model (`ProtPhenoAge_UKB.json`) and metadata |
 | `data/` | Training/test data (UKB raw data are subject to data-use agreements and are not redistributed here) |
 
@@ -140,7 +137,7 @@ If this pipeline is useful for your research, please cite:
 ```bibtex
 @article{wang2026protophenoage,
   title   = {ProtPhenoAge: Integrating plasma proteomics to predict Aging-Related disease Risks},
-  author  = {Wang, Yifan and Sun, Yue and Yang, Fan and others},
+  author  = {Wang, Yifan and Sun, Yue and Yang, Fan and Li, Musu and Qi, Tianchen and Lu, Zixuan and Wang, Qian and Bu, Qingyin and Sun, Longhu and Wo, Hongmei and Zhao, Yang and Yi, Honggang and Dai, Juncheng},
   journal = {Journal of Advanced Research},
   year    = {2026},
   doi     = {10.1016/j.jare.2026.05.022}
@@ -152,6 +149,10 @@ If this pipeline is useful for your research, please cite:
 - PhenoAge calculation: [BioAge](https://github.com/dayoonkwon/BioAge/)
 - Feature selection: [BorutaShap](https://github.com/Ekeany/Boruta-Shap)
 - Tuning and model: Optuna, XGBoost
+
+## License
+
+The work described in this repository (paper and repository content) is licensed under [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) (© 2026 The Authors). Sharing is permitted with attribution; commercial use and distribution of modified material are not. For commercial use or other licensing, please contact the authors.
 
 ## Contact
 
