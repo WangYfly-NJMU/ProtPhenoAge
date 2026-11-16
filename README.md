@@ -54,7 +54,7 @@ python script/ProtPhenoAge4UKB.py \
 ```
 
 - `--input` is required; `--model` defaults to `model/ProtPhenoAge_UKB.json`; `--output` defaults to `<input_stem>_protphenoage.csv` (next to the input)
-- Preserves an ID column when present; if a `phenoage` column exists, `protPA_accel` (PhenoAge − ProtPhenoAge) is also output
+- The first output column is the input ID column when present, otherwise `row` (1-based row number)
 - `--keep-all`: output the full input matrix with an appended `protphenoage` column
 - The model contains 185 protein features aligned by column name; missing model proteins are treated as missing values, with a warning
 
@@ -116,7 +116,6 @@ The output is `<input_stem>_protphenoage.csv` (CSV, comma-separated, with header
 
 - The first column is the input ID column when present, otherwise `row` (1-based row number)
 - `protphenoage`: predicted protein phenotypic age (years)
-- When the input has a `phenoage` column, `protPA_accel = phenoage − protphenoage` is also output
 
 Example:
 

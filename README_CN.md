@@ -54,7 +54,7 @@ python script/ProtPhenoAge4UKB.py \
 ```
 
 - `--input` 必填；`--model` 默认 `model/ProtPhenoAge_UKB.json`；`--output` 默认 `<输入文件名>_protphenoage.csv`（与输入同目录）
-- 输入含 ID 列时输出 ID；含 `phenoage` 列时额外输出 `protPA_accel`（PhenoAge − ProtPhenoAge）
+- 输入含 ID 列时输出该 ID，否则输出 `row`（1 起始行号）
 - `--keep-all`：输出完整输入矩阵并追加 `protphenoage` 列
 - 模型含 185 个蛋白特征，按列名对齐；输入缺少的蛋白按缺失值处理并给出警告
 
@@ -116,7 +116,6 @@ pred = booster.predict(xgb.DMatrix(df.reindex(columns=features),
 
 - 输入含 ID 列时首列为该 ID，否则为 `row`（1 起始行号）
 - `protphenoage`：预测的蛋白表型年龄（年）
-- 输入含 `phenoage` 列时额外输出 `protPA_accel = phenoage − protphenoage`
 
 示例：
 
