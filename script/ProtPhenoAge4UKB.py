@@ -97,9 +97,8 @@ def main():
               f'{missing[:20]}{" ..." if len(missing) > 20 else ""}')
 
     id_col = detect_id_column(columns)
-    extra_cols = [c for c in ('phenoage',) if c in columns]
     usecols = columns if args.keep_all else list(dict.fromkeys(
-        ([id_col] if id_col else []) + available + extra_cols))
+        ([id_col] if id_col else []) + available))
     df = pd.read_csv(input_path, usecols=usecols)
 
     X = df.reindex(columns=feature_names).apply(pd.to_numeric, errors='coerce')
@@ -114,12 +113,7 @@ def main():
         out['protphenoage'] = pred
     else:
         ids = df[id_col].to_numpy() if id_col else np.arange(1, len(df) + 1)
-        out = pd.DataFrame({id_col if id_col else 'row': ids})
-        if extra_cols:
-            out['phenoage'] = df['phenoage'].to_numpy()
-        out['protphenoage'] = pred
-    if extra_cols:
-        out['protPA_accel'] = out['phenoage'] - out['protphenoage']
+        out = pd.DataFrame({id_col if id_col else 'row': ids, 'protphenoage': pred})
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     out.to_csv(output_path, index=False)
