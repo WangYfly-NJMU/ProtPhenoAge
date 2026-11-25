@@ -1,5 +1,9 @@
 {
   "description": "ProtPhenoAge UKB reproduction (XGBoost)",
+  "provenance": {
+    "zh": "最早的模型训练运行未保存 JSON 模型文件；当前模型是用与论文相同的参数（见 params）重新训练并保存的。原始模型预测来自 df4ProtPhenoAge.RData（df.AgingPheno$ProtPhenoAgeXgBoost）：本模型与其预测的相关系数为 0.9939（全部 37,433 人；训练集 0.9960，测试集 0.9883；差值 SD≈0.96 年），部分统计量与论文基本一致（对照见 metric_notes），剩余差异来自运行环境噪声（见 metric_notes.environment_variation）。",
+    "en": "The earliest model training run did not save a JSON model file; the current model was retrained with the same hyperparameters used in the paper (see params) and saved. Original model predictions are taken from df4ProtPhenoAge.RData (df.AgingPheno$ProtPhenoAgeXgBoost); predictions of this model correlate with them at r=0.9939 (all 37,433 participants; train 0.9960, test 0.9883; difference SD≈0.96 years). Several statistics reproduce almost identically (see metric_notes), and the remaining differences come from runtime-environment noise (see metric_notes.environment_variation)."
+  },
   "created_at": "2026-11-16T10:05:27.797319+08:00",
   "environment": {
     "python": "3.9.21",
@@ -49,16 +53,16 @@
       "en": "test_metrics are computed on the strictly held-out test set (n=11230; not used for training or early stopping): rmse/mae are prediction errors; r2/pearson_r reflect agreement between predictions and phenoage."
     },
     "paper_main_text": {
-      "zh": "论文主文 r=0.96 / R2=0.92 为全队列拟合口径（训练+测试合并 37433 人实测 r=0.9555 / R2=0.9119）。",
-      "en": "The paper's main-text r=0.96 / R2=0.92 uses a whole-cohort fit protocol (train + test pooled, includes in-sample predictions); pooled reproduction on 37,433 participants gives r=0.9555 / R2=0.9119."
+      "zh": "论文正文报告 r=0.96 / R2=0.92，为全队列拟合口径（训练+测试合并，含样本内预测）。本模型按相同参数重训后在全队列 37,433 人上实测 r=0.9555 / R2=0.9119，与论文基本一致；残余差异来自运行环境噪声（本模型与论文模型 ProtPhenoAgeXgBoost 预测相关 0.9939，见 provenance 与 environment_variation）。",
+      "en": "The paper's main text reports r=0.96 / R2=0.92 under a whole-cohort fit protocol (train + test pooled, includes in-sample predictions). Retrained with identical hyperparameters, this model gives r=0.9555 / R2=0.9119 on the pooled 37,433 participants, essentially consistent with the paper; residual differences are runtime-environment noise (predictions correlate with the paper's model ProtPhenoAgeXgBoost at r=0.9939; see provenance and environment_variation)."
     },
     "paper_supplementary": {
-      "zh": "论文补充材料 RMSE=3.626 / MAE=2.898 对应 ProtPhenoAge acceleration（ProtPhenoAge ~ PhenoAge 线性回归残差）在留出预测上的 RMS/MAE，非预测误差；本复现实测 RMS=3.6129 / MAE=2.8800，差异属环境/版本级噪声（见 environment_variation）。",
-      "en": "The paper's supplementary RMSE=3.626 / MAE=2.898 correspond to the RMS/MAE of ProtPhenoAge acceleration (residuals of a linear regression of ProtPhenoAge on PhenoAge) on held-out predictions, not prediction errors; this reproduction gives RMS=3.6129 / MAE=2.8800. The gap is environment/version-level noise (see environment_variation)."
+      "zh": "论文补充文件报告 RMSE=3.626 / MAE=2.898，对应 ProtPhenoAge acceleration（ProtPhenoAge ~ PhenoAge 线性回归残差）在留出预测上的 RMS/MAE，非预测误差。本模型实测 RMS=3.6129 / MAE=2.8800，与补充文件基本一致；差异属环境/版本级噪声（见 environment_variation），且不可与 test_metrics 的 rmse/mae（预测误差）直接比较。",
+      "en": "The paper's supplementary file reports RMSE=3.626 / MAE=2.898, the RMS/MAE of ProtPhenoAge acceleration (residuals of a linear regression of ProtPhenoAge on PhenoAge) on held-out predictions, not prediction errors. This model gives RMS=3.6129 / MAE=2.8800, essentially consistent with the supplementary values; the gap is environment/version-level noise (see environment_variation), and these values are not comparable to test_metrics rmse/mae (prediction errors)."
     },
     "environment_variation": {
-      "zh": "不同运行环境（XGBoost 版本、操作系统/硬件平台、线程数等）会造成重训与预测的细微数值差异（浮点累加顺序、直方图分箱边界不同）。本复现模型与论文模型的预测值相关系数为 0.999，上述 0.4%–0.6% 的指标差异属于环境级噪声，不代表模型本质不同。",
-      "en": "Different runtime environments (XGBoost version, OS/hardware platform, thread count, etc.) produce slight numerical differences in retraining and prediction (floating-point accumulation order and histogram bin boundaries differ). The predictions of this reproduction correlate with the paper's model at r=0.999; the 0.4%–0.6% metric gaps above are environment-level noise, not a materially different model."
+      "zh": "不同运行环境（XGBoost 版本、操作系统/硬件平台、线程数等）会造成重训与预测的细微数值差异（浮点累加顺序、直方图分箱边界不同）。本复现模型与论文模型（ProtPhenoAgeXgBoost）预测的相关系数为 0.9939（全队列 n=37,433；训练 0.9960 / 测试 0.9883；差值 SD≈0.96 年，max|diff|≈5.3 年），上述 0.4%–0.6% 的指标差异属于环境级噪声，不代表模型本质不同。",
+      "en": "Different runtime environments (XGBoost version, OS/hardware platform, thread count, etc.) produce slight numerical differences in retraining and prediction (floating-point accumulation order and histogram bin boundaries differ). The predictions of this reproduction correlate with the paper's model (ProtPhenoAgeXgBoost) at r=0.9939 (whole cohort n=37,433; train 0.9960 / test 0.9883; difference SD≈0.96 years, max|diff|≈5.3 years); the 0.4%–0.6% metric gaps above are environment-level noise, not a materially different model."
     }
   },
   "proteins": [
